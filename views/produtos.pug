@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  .content
+    h1 Produtos Disponíveis
+    if produtos.lenght
+      each produto in produtoss
+        .porduto
+        h3=produto.nome
+        p Descrição: #{produto.descricao}

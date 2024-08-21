@@ -1,0 +1,10 @@
+.cabecalho {
+    border: 4px solid white;
+    border-radius: 20px;
+    background-color: #333333;
+}
+
+body {
+    height: auto;
+    width: 1920px;
+}

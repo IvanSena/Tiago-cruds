@@ -1,0 +1,35 @@
+extends layout
+  
+
+block content
+  .content
+  div.slideshow-container
+    div.myslides-fade
+      div.numbertext 1/4
+      img( src="https://cdnb.artstation.com/p/assets/images/images/046/086/667/large/guilherme-freitas-br-copy12-copy.jpg?1644267167", alt="Imaagem do artstation do Guilherme Freitas")
+
+    div.myslides-fade
+      div.numbertext 2/4
+      img(id = "imagem2" src="https://cdnb.artstation.com/p/assets/images/images/046/087/123/large/guilherme-freitas-1.jpg?1644267792", alt="imagem de rascunho da arte anterior")
+    
+    div.myslides-fade
+      div.numbertext 3/4
+      img(id = "imagem3" src="https://cdna.artstation.com/p/assets/images/images/049/587/522/large/guilherme-freitas-reamakefinal.jpg?1652835031", alt="arte disponível no artstation do guifreitas")
+
+    div.myslides-fade
+      div.numbertext 4/4
+      img( src="https://cdnb.artstation.com/p/assets/images/images/048/141/611/large/guilherme-freitas-out-of-the-shell-artstation.jpg?1649296751", alt="outra arte do gui")
+
+    div.cabecalho
+      h1 Bem-vindo à WW IvanTec-loja de equipamentos e artefatos tecnológicos de todos os tipos
+      p Aqui você pode encontrar cadastar produtos de informática, contando que sejam tecnológicos
+
+  h2 Produtos Disponíveis
+  if produtos.length
+    each produto in produtos
+      .produtos
+        h3 = produto.nome
+        p Descrição: ${produto.descricao}
+        p Preço: R$ ${produto.preco}
+  else
+    p Nemnhum produto disponível no momento
