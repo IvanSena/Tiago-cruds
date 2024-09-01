@@ -1,8 +1,5 @@
 console.log("Vai Rodando!");
-
 const express = require("express");
-const app = express();
-const port = 3002;
 const address = "localhost";
 const pug = require("pug");
 
@@ -52,6 +49,8 @@ app.post('/cadastro', (req, res) => {
 });
 
 // Iniciar o servidor
-app.listen(port, address, () => {
-  console.log(`Servidor executando no endereço http://${address}:${port}`);
+app.listen(3002, "0.0.0.0", () => {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log(`Servidor executando no endereço http://${host}:${port}`);
 });

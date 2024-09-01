@@ -1,50 +1,41 @@
-extends layout
-  
+extends layout  
 
 block content
   .content
-
-  a A Vida é injusta 
-  .slideshow-container
-  .mySlides.fade
-    .numbertext 1 / 3
+  div.slideshow-container
+  div.mySlides
     img(src="https://cdna.artstation.com/p/assets/images/images/049/587/522/large/guilherme-freitas-reamakefinal.jpg?1652835031" style="width:100%")
-    .text Caption Text
   
-  .mySlides.fade
-    .numbertext 2 / 3
+  div.mySlides
     img(src="https://cdnb.artstation.com/p/assets/images/images/046/086/667/large/guilherme-freitas-br-copy12-copy.jpg?1644267167" style="width:100%")
-    .text Caption Two
   
-  .mySlides.fade
-    .numbertext 3 / 3
+  div.mySlides
     img(src="https://cdnb.artstation.com/p/assets/images/images/046/087/123/large/guilherme-freitas-1.jpg?1644267792" style="width:100%")
-    .text Caption Three
+  
 
   a.prev(onclick="plusSlides(-1)") &#10094;
   a.next(onclick="plusSlides(1)") &#10095;
 
   br
 
-  div(style="text-align:center")
-    span.dot(onclick="currentSlide(1)")
-    span.dot(onclick="currentSlide(2)")
-    span.dot(onclick="currentSlide(3)")
+  
 
 
 
   div.cabecalho
-      h1 Bem-vindo à WW IvanTec-loja de equipamentos e artefatos tecnológicos de todos os tipos
+      h1 Produtos em destaque
       p Aqui você pode encontrar cadastar produtos de informática, contando que sejam tecnológicos
 
-  h2 Produtos Disponíveis
   if produtos.length
     each produto in produtos
-      .produtos
-        h3 = produto.nome
-        p Descrição: ${produto.descricao}
-        p Preço: R$ ${produto.preco}
+      div.produtos
+        button 
+          img(src="", alt="")
+          h3 = produto.nome
+          p Descrição: ${produto.descricao}
+          p Preço: R$ ${produto.preco}
+          
   else
     p Nemnhum produto disponível no momento
   
-  script(src="public/slide.js")
+  
