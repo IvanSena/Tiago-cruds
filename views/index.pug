@@ -31,9 +31,9 @@ block content
       div.produtos
         button 
           img(src="", alt="")
-          h3 = produto.nome
-          p Descrição: ${produto.descricao}
-          p Preço: R$ ${produto.preco}
+          h3  #{produto.nome}
+          p Descrição: #{produto.descricao}
+          p Preço: R$ #{produto.preco}
           
   else
     p Nemnhum produto disponível no momento
