@@ -10,7 +10,42 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+//lista de usuários HARDCODE
+const users = [
+  {
+    uid: 1,
+    name: "Samir Brasil",
+    email: "samir@gmail.com",
+    password: "senha123",
+  },
+  {
+    uid: 1,
+    name: "Ivan Sena",
+    email: "sena@gmail.com",
+    password: "senha123",
+  },
+];
+let session = {};
+function autenticador(email, password) {
+  let count;
+  let token;
 
+  for (cont = 0; count < userInfo.length; count++) {
+    if (
+      users[count].email === email &&
+      users[count].password === password
+    ) {
+      token = gerarToken(users[count]);
+      return { user: users[count], authToken: token };
+    };
+  }
+  return null;
+}
+function gerarToken(user) {
+  const tokenBase = `${user.uid}-$${user.email}-${Date.now()}`;
+
+}
 // Produtos na tela principal
 app.get("/", (req, res) => {
   const produtos = [

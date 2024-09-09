@@ -4,16 +4,28 @@
 
 body {
     height: auto;
-    width: 1460px;
+    width: 100%;
+    font-family: 'Playwrite Cuba', Times, monospace;
 }
 
 .produtos {
-
+    align-content: center;
+    width: 20%;
     background-color: red;
+    display: inline;
+}
+
+.buttoncontent {
+    margin-left: 25px;
+    margin-top: 25px;
+    display: inline;
+    width: 30%;
+    height: 100%;
+    word-wrap: break-word;
 }
 
 .logo {
-    margin-left: 100px;
+    margin-right: -1px;
     background-color: red;
 }
 
@@ -45,21 +57,28 @@ body {
 }
 
 .slideshow-container {
-    max-width: 1000px;
+    width: 100%;
     position: relative;
     margin: auto;
 
 }
 
+
 .mySlides {
+    max-width: 100%;
     display: none;
 }
 
-.prev,
-.next {
+.mySlides img {
+    object-fit: cover;
+    height: 31.25rem;
+}
+
+.slideshow-container .prev,
+.slideshow-container .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 15.6rem;
     width: auto;
     margin-top: -22px;
     padding: 16px;
@@ -78,6 +97,11 @@ body {
 
 prev:hover,
 .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+prev:hover,
+.prev:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
