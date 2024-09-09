@@ -31,7 +31,7 @@ function autenticador(email, password) {
   let count;
   let token;
 
-  for (cont = 0; count < userInfo.length; count++) {
+  for (cont = 0; count < user.length; count++) {
     if (
       users[count].email === email &&
       users[count].password === password
@@ -44,9 +44,34 @@ function autenticador(email, password) {
 }
 function gerarToken(user) {
   const tokenBase = `${user.uid}-$${user.email}-${Date.now()}`;
-
+  return crypto.createHash("sha256").update(tokenBase).digest("hex");
 }
-// Produtos na tela principal
+function authMiddleware(req, res, next) {
+  const { authToken } = req.query;
+
+  if (session.authToken === authToken) {
+    req.user = session.user;
+    console.log(session.user);
+    next();
+  } else {
+    console.log(session.user);
+    res.status(401).redirect("/")
+  }
+}
+
+//Rota de login (É a primeira tela praticamente)
+app.get("/", (_, res) => {
+  res.render("login");
+});
+
+//rota de autenticação
+app.post("/authenticated", (req, res) => {
+  const { email, password } = req.body;
+  const authResult = autenticador(email, password);
+
+
+})
+
 app.get("/", (req, res) => {
   const produtos = [
     {
