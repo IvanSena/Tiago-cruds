@@ -27,6 +27,7 @@ const users = [
   },
 ];
 let session = {};
+
 function autenticador(email, password) {
   let count;
   let token;
@@ -72,62 +73,57 @@ app.post("/authenticated", (req, res) => {
 
 })
 
-app.get("/", (req, res) => {
-  const produtos = [
-    {
-      id: 1,
-      nome: "Notebook",
-      descricao:
-        "Notebook Dell Inspiron 15, com processador Intel i7, 16GB de RAM, 512GB SSD, tela Full HD de 15.6 polegadas.",
-      preco: 2999.99,
-    },
-    {
-      id: 2,
-      nome: "Mouse",
-      descricao:
-        "Mouse sem fio Logitech MX Master 3, ergonômico, com sensor de alta precisão e bateria recarregável.",
-      preco: 99.99,
-    },
-    {
-      id: 3,
-      nome: "Teclado",
-      descricao:
-        "Teclado mecânico sem fio Keychron K2, com switches Red, retroiluminação RGB, compatível com Windows e macOS.",
-      preco: 199.99,
-    },
-    {
-      id: 4,
-      nome: "Monitor",
-      descricao:
-        "Monitor LG UltraWide 34'', resolução 2560x1080, tecnologia IPS, ideal para multitarefa e edição de vídeo.",
-      preco: 1499.99,
-    },
-    {
-      id: 5,
-      nome: "Headset",
-      descricao:
-        "Headset Gamer HyperX Cloud II, som surround 7.1, microfone removível, estrutura em alumínio.",
-      preco: 499.99,
-    },
-    {
-      id: 6,
-      nome: "Impressora",
-      descricao:
-        "Impressora Multifuncional HP DeskJet 3776, com Wi-Fi, impressão, cópia e digitalização, compatível com smartphones e tablets.",
-      preco: 399.99,
-    },
-  ];
-  res.render('index', { produtos });
+app.get("/home", authMiddleware, (req, res) => {
+  res.render("home", { produtos, user: session.user, authToken: session.authToken });
 });
+const produtos = [
+  {
+    id: 1,
+    nome: "Notebook",
+    descricao:
+      "Notebook Dell Inspiron 15, com processador Intel i7, 16GB de RAM, 512GB SSD, tela Full HD de 15.6 polegadas.",
+    preco: 2999.99,
+  },
+  {
+    id: 2,
+    nome: "Mouse",
+    descricao:
+      "Mouse sem fio Logitech MX Master 3, ergonômico, com sensor de alta precisão e bateria recarregável.",
+    preco: 99.99,
+  },
+  {
+    id: 3,
+    nome: "Teclado",
+    descricao:
+      "Teclado mecânico sem fio Keychron K2, com switches Red, retroiluminação RGB, compatível com Windows e macOS.",
+    preco: 199.99,
+  },
+  {
+    id: 4,
+    nome: "Monitor",
+    descricao:
+      "Monitor LG UltraWide 34'', resolução 2560x1080, tecnologia IPS, ideal para multitarefa e edição de vídeo.",
+    preco: 1499.99,
+  },
+  {
+    id: 5,
+    nome: "Headset",
+    descricao:
+      "Headset Gamer HyperX Cloud II, som surround 7.1, microfone removível, estrutura em alumínio.",
+    preco: 499.99,
+  },
+  {
+    id: 6,
+    nome: "Impressora",
+    descricao:
+      "Impressora Multifuncional HP DeskJet 3776, com Wi-Fi, impressão, cópia e digitalização, compatível com smartphones e tablets.",
+    preco: 399.99,
+  },
+];
 
-// Tela de Login
-app.get('/login', (req, res) => {
-  res.render('login');
-});
 
-app.post('/login', (req, res) => {
-  const { email, senha } = req.body;
-  res.render('login', { error: 'Credenciais invalidas' });
+app.get("/produtos", authMiddleware(req, res)=> {
+  res.render("produtos", { authToken: session.authToken, produtos });
 });
 
 // Tela de Cadastro
