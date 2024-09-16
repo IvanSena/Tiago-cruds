@@ -3,36 +3,15 @@ html(lang="pt-br")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title #{title} - Ivan Sena tec Store 
+    title #{title} - IvanTech Store
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous")
-    //link(rel="stylesheet", href="/pure-min.css")
     link(rel="stylesheet", href="Cssheet/style.css")
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet"> 
-    
   body
     header
-      .pure-menu.pure-menu-horizontal
-        a.pure-menu-heading.pure-menu-link(href="/") WW Loja
-        ul.pure-menu-list
-          li.pure-menu-item
-            a.pure-menu-link(href="/produtos") Produtos
-          li.pure-menu-item
-            a.pure-menu-link(href="/login") Login
-          li.pure-menu-item
-            a.pure-menu-link(href="/cadastro") Cadastro
-        spam.buscar
-          input.lupinha(type="text")
-          button.lupabotao  
-            img(src="https://cdn-icons-png.flaticon.com/512/2866/2866321.png", alt="")
-        spam.logo 
-          img(src="public/Images/Wireframe.png", alt="logo")
+      h3 |
     main
       block content
     footer
       .footer-content
-        p &copy; 2024 WW Loja. Todos os direitos reservados.
-  script(src="index.js")
-  script(src="slide.js")
-  
+        p &copy; 2024 WesleyTech Store. Todos os direitos reservados.
+    script(type="module" src="/js/script.js")

@@ -76,6 +76,7 @@ app.post("/authenticated", (req, res) => {
 app.get("/home", authMiddleware, (req, res) => {
   res.render("home", { produtos, user: session.user, authToken: session.authToken });
 });
+
 const produtos = [
   {
     id: 1,
@@ -121,21 +122,13 @@ const produtos = [
   },
 ];
 
-
-app.get("/produtos", authMiddleware(req, res)=> {
+app.get("/produtos", authMiddleware, (req, res) => {
   res.render("produtos", { authToken: session.authToken, produtos });
 });
 
-// Tela de Cadastro
-app.get('/cadastro', (req, res) => {
-  res.render('cadastro');
+app.get("/cadastro", authMiddleware, (req, res) => {
+  res.render("cadastro", { authToken: session.authToken });
 });
-
-app.post('/cadastro', (req, res) => {
-  const { nome, email, senha } = req.body;
-  res.render('cadastro', { error: 'Erro ao cadastrar usuário' });
-});
-
 // Iniciar o servidor
 const server = app.listen(3000, "0.0.0.0", () => {
   const host = server.address().address;

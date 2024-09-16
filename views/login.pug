@@ -2,15 +2,24 @@ extends layout
 
 block content
   .content
-    h1 Bem vindo a Ivan Store
-
-    .login-section 
-    form.pure-form.pure-form-stacked(id="loginForm")
-      fildset
-        label(for="email") Email:
-        input(type="email", id="email",name="email",required)
-        label(for="passowed") Senha:
-        input(type="password",id="password",name="password",required)
-        button.pure-button.pure-button-primary(id="submit") Entrar
-      p#login-message 
+    div.logincontent
+      div.loginbanner
+          img(src="https://cdnb.artstation.com/p/assets/images/images/046/086/667/large/guilherme-freitas-br-copy12-copy.jpg?1644267167" style="width:100%")
+      div.login-form 
+        h1 [logo]
+        form.pure-form.pure-form-stacked(id="loginForm")
+          h2 Loge-se na nossa loja
+          div.fieldset
+            p Email:
+            div.input-container
+              label(for="email")
+              input(type="email", id="email",name="email",required)
+            p Senha:
+            div.input-container
+              label(for="passowed")
+              input(type="password",id="password",name="password",required)
+            
+            button.bnt(id="submit") Entrar
+          p#login-message 
+          div.space 
     script(type="module" src="/js/autenticacao.js") 

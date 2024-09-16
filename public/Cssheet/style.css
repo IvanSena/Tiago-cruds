@@ -1,13 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* coisas relativas a pagina inteira */
 .cabecalho {
     text-align: center;
 }
 
-body {
-    height: auto;
-    width: 100%;
-    font-family: 'Playwrite Cuba', Times, monospace;
+.space {
+    margin-top: 50%;
 }
 
+header,
+footer {
+    background: #afc9e4;
+    text-align: center;
+    padding: 1em 0;
+}
+
+body {
+    background-color: black;
+    height: auto;
+    width: 100%;
+    font-family: "PT Sans", sans-serif;
+}
+
+/* coisas relativas a página principal(home) */
 .produtos {
     align-content: center;
     width: 20%;
@@ -48,6 +65,10 @@ body {
     cursor: pointer;
     background-color: lightgrey;
     margin-left: 15px;
+}
+
+.lupabotao:hover {
+    opacity: 1;
 }
 
 .lupinha {
@@ -105,8 +126,82 @@ prev:hover,
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* coisas relativas a pagina de login */
+
+.logincontent {
+    display: flex;
+    box-sizing: border-box;
+    position: static;
+}
+
+.login-form {
+    display: block;
+    width: 30%;
+    height: 400px;
+    align-content: center;
+    text-align: center;
+    margin: 100px 0px 0px 10%;
+}
+
+.login-form h1,
+.login-form h2 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    color: white;
+}
+
+.loginbanner {
+    height: 700px;
+    width: 50%;
+    overflow: hidden;
+}
+
+.loginbanner img {
+    height: 720px;
+    object-fit: cover;
+}
+
+.fieldset {
+    background-color: rgba(158, 172, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid white;
+    color: antiquewhite;
+    padding: 10px;
+    text-align: left;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
 
 
-.dotboot {
-    text-align: center
+.inputCampo:focus {
+    border: 2px solid dodgerblue;
+}
+
+.bnt {
+    border-radius: 10px;
+    background-color: dodgerblue;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.btn:hover {
+    opacity: 1;
 }
