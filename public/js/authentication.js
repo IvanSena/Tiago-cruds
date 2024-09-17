@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.getElementById("LoginForm");
+    const loginForm = document.getElementById("loginForm");
     const loginMessage = document.getElementById("login-message");
 
     loginForm.addEventListener("submit", async (event) => {
@@ -9,36 +9,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById("password").value;
 
         try {
-            const response = await fetch("/autenticacao", {
+            const response = await fetch("/authenticated", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password })
+                body: JSON.stringify({ email, password }),
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
-                loginMessage.textContent = `Error ${errorData.message || "Erro ao tntar autenticar."}`;
+                loginMessage.textContent = `Erro: ${errorData.message || "Erro ao tentar autenticar."}`;
                 loginMessage.style.color = "red";
-            }
-            else {
+            } else {
                 const data = await response.json();
                 loginMessage.style.color = "green";
                 alert(data.message);
-                loginMessage.textContent = data.message;
-                window.location.href = `/home?authToken= ${data.authToken}`;
-
+                loginMessage.textContent = `${data.message || "Login realizado com sucesso!"}`;
+                window.location.href = "/home";
                 setTimeout(() => {
                     window.location.href = "/";
                 }, 2000);
             }
-        }
-
-        catch (error) {
-            loginMessage.textContent = `Erro de rede: ${eror.message}`;
+        } catch (error) {
+            loginMessage.textContent = `Erro de rede: ${error.message}`;
             loginMessage.style.color = "red";
         }
-
     });
 });
