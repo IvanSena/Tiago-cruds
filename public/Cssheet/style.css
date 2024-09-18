@@ -4,6 +4,11 @@
 /* coisas relativas a pagina inteira */
 .cabecalho {
     text-align: center;
+    color: white;
+}
+
+.cabecalho p {
+    font-family: "Raleway", sans-serif;
 }
 
 .space {
@@ -12,7 +17,7 @@
 
 header,
 footer {
-    background: #afc9e4;
+    background: white;
     text-align: center;
     padding: 1em 0;
 }
@@ -25,20 +30,54 @@ body {
 }
 
 /* coisas relativas a página principal(home) */
+
 .produtos {
     align-content: center;
-    width: 20%;
-    background-color: red;
     display: inline;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
 }
 
 .buttoncontent {
     margin-left: 25px;
     margin-top: 25px;
     display: inline;
-    width: 30%;
-    height: 100%;
+    width: 300px;
+    height: 400px;
+    font-size: calc(0.5vw + 10px);
     word-wrap: break-word;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.vermais {
+    display: block;
+    margin: 50px auto;
+    width: 200px;
+    height: 45px;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+    font-family: "Raleway", sans-serif;
+    font-weight: 600;
+    border: 0;
+    border: 2px solid white;
+}
+
+.vermais:hover {
+    background-color: white;
+    color: black;
+}
+
+.buttoncontent h3 {
+    display: absolute;
+    margin-top: -90px;
+    vertical-align: top;
+}
+
+.buttoncontent img {
+    width: 125px;
 }
 
 .logo {
@@ -95,8 +134,8 @@ body {
     height: 31.25rem;
 }
 
-.slideshow-container .prev,
-.slideshow-container .next {
+.prev,
+.next {
     cursor: pointer;
     position: absolute;
     top: 15.6rem;

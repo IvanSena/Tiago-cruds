@@ -20,10 +20,16 @@ const users = [
     password: "senha123",
   },
   {
-    uid: 1,
+    uid: 2,
     name: "Ivan Sena",
     email: "sena@gmail.com",
     password: "senha123",
+  },
+  {
+    uid: 3,
+    name: "y",
+    email: "s@g",
+    password: "1",
   },
 ];
 let session = {};
@@ -32,7 +38,7 @@ function autenticador(email, password) {
   let count;
   let token;
 
-  for (cont = 0; count < user.length; count++) {
+  for (count = 0; count < users.length; count++) {
     if (
       users[count].email === email &&
       users[count].password === password
@@ -69,9 +75,18 @@ app.get("/", (_, res) => {
 app.post("/authenticated", (req, res) => {
   const { email, password } = req.body;
   const authResult = autenticador(email, password);
+  session = autenticador(email, password);
 
-
-})
+  if (authResult) {
+    res.status(200).json({
+      message: "Login realizado com sucesso!",
+      authToken: authResult.authToken,
+    });
+    //res.redirect(`/home?token=${authResult.token}`);
+  } else {
+    res.status(401).json({ message: "Usuário ou senha inválidos" });
+  }
+});
 
 app.get("/home", authMiddleware, (req, res) => {
   res.render("home", { produtos, user: session.user, authToken: session.authToken });
@@ -84,6 +99,7 @@ const produtos = [
     descricao:
       "Notebook Dell Inspiron 15, com processador Intel i7, 16GB de RAM, 512GB SSD, tela Full HD de 15.6 polegadas.",
     preco: 2999.99,
+    imagem: "https://www.dell.com/pt-br/shop/notebooks-dell/notebook-inspiron-15/spd/inspiron-15-3520-laptop/i3520wadl1012w"
   },
   {
     id: 2,
@@ -91,6 +107,7 @@ const produtos = [
     descricao:
       "Mouse sem fio Logitech MX Master 3, ergonômico, com sensor de alta precisão e bateria recarregável.",
     preco: 99.99,
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_768669-MLU75720929309_042024-O.webp"
   },
   {
     id: 3,
@@ -98,6 +115,7 @@ const produtos = [
     descricao:
       "Teclado mecânico sem fio Keychron K2, com switches Red, retroiluminação RGB, compatível com Windows e macOS.",
     preco: 199.99,
+    imagem: "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages.kabum.com.br%2Fprodutos%2Ffotos%2F105009%2Fteclado-mecanico-gamer-hyperx-alloy-origins-core-rgb-hx-kb7rdx-br_1574693479_g.jpg&w=640&q=100"
   },
   {
     id: 4,
@@ -105,20 +123,7 @@ const produtos = [
     descricao:
       "Monitor LG UltraWide 34'', resolução 2560x1080, tecnologia IPS, ideal para multitarefa e edição de vídeo.",
     preco: 1499.99,
-  },
-  {
-    id: 5,
-    nome: "Headset",
-    descricao:
-      "Headset Gamer HyperX Cloud II, som surround 7.1, microfone removível, estrutura em alumínio.",
-    preco: 499.99,
-  },
-  {
-    id: 6,
-    nome: "Impressora",
-    descricao:
-      "Impressora Multifuncional HP DeskJet 3776, com Wi-Fi, impressão, cópia e digitalização, compatível com smartphones e tablets.",
-    preco: 399.99,
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_929217-MLA50289011373_062022-O.webp"
   },
 ];
 

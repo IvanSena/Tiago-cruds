@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 const data = await response.json();
                 loginMessage.style.color = "green";
-                alert(data.message);
+
                 loginMessage.textContent = `${data.message || "Login realizado com sucesso!"}`;
-                window.location.href = "/home";
+                window.location.href = `/home?authToken=${data.authToken}`;
                 setTimeout(() => {
                     window.location.href = "/";
                 }, 2000);
