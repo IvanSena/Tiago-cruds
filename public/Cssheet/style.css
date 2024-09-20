@@ -86,8 +86,10 @@ body {
 
 .logo {
     margin-right: -1px;
-    background-color: red;
+    width: 50px;
 }
+
+
 
 .buscar {
     width: 100%;
@@ -186,6 +188,10 @@ prev:hover,
     margin: 100px 0px 0px 10%;
 }
 
+.login-form img {
+    width: 100px;
+}
+
 .login-form h1,
 .login-form h2 {
     font-family: "Raleway", sans-serif;
@@ -206,7 +212,7 @@ prev:hover,
     object-fit: cover;
 }
 
-.fieldset {
+.fieldsetlogin {
     background-color: rgba(158, 172, 255, 0.1);
     border-radius: 10px;
     border: 1px solid white;
@@ -248,4 +254,47 @@ prev:hover,
 
 .btn:hover {
     opacity: 1;
+}
+
+/* coisas relativas á página de cadrasto de produtos */
+
+.prodPage {
+    display: block;
+    width: 30%;
+    align-content: center;
+    text-align: center;
+    margin-top: 10vh;
+    margin-bottom: 30vh;
+    margin-left: 80vh;
+}
+
+.prodPage h1 {
+    font-family: "PT sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    color: white;
+}
+
+.prodInput {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.prodInput input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.fieldsetProd {
+    background-color: rgba(158, 172, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid white;
+    color: antiquewhite;
+    padding: 10px;
+    text-align: left;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
