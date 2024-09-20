@@ -1,0 +1,33 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.getElementById("produtoCadForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.target);
+        const produto = {
+            nome: formData.get("nome"),
+            descricao: formData.get("descricao"),
+            preco: formData.get("preco"),
+        };
+
+        try {
+            const response = await fetch("/cadastrar-produto", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(produto),
+            });
+
+            if (response.ok) {
+                window.location.href = `/cadastro?authToken=${authToken}`;
+            } else {
+                alert("Erro ao adicionar produto");
+            }
+        } catch (error) {
+            console.error("Erro:", error);
+        }
+    });
+
+
+})

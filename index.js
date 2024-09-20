@@ -126,6 +126,23 @@ const produtos = [
     imagem: "https://http2.mlstatic.com/D_NQ_NP_929217-MLA50289011373_062022-O.webp"
   },
 ];
+//rota para cadastrar produto
+
+app.post("/cadastrar-produto", (req, res) => {
+  const { nome, descricao, preco } = req.body;
+
+  const novoProduto = {
+    id: produtos.length + 1, // Gera um novo ID
+    nome,
+    descricao,
+    preco: parseFloat(preco),
+  };
+
+  produtos.push(novoProduto);
+
+  console.log("Novo produto adicionado:", novoProduto);
+  res.status(201).json({ message: "Produto adicionado com sucesso!" });
+});
 
 app.get("/produtos", authMiddleware, (req, res) => {
   res.render("produtos", { authToken: session.authToken, produtos });

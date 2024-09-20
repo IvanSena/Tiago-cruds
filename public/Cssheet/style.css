@@ -22,6 +22,10 @@ footer {
     padding: 1em 0;
 }
 
+footer {
+    height: 10vh;
+}
+
 body {
     background-color: black;
     height: auto;
@@ -29,7 +33,7 @@ body {
     font-family: "PT Sans", sans-serif;
 }
 
-/* coisas relativas a página principal(home) */
+/*coisas relativas a página principal(home) */
 
 .produtos {
     align-content: center;
@@ -171,12 +175,12 @@ prev:hover,
     display: flex;
     box-sizing: border-box;
     position: static;
+
 }
 
 .login-form {
     display: block;
     width: 30%;
-    height: 400px;
     align-content: center;
     text-align: center;
     margin: 100px 0px 0px 10%;
@@ -191,13 +195,14 @@ prev:hover,
 }
 
 .loginbanner {
-    height: 700px;
+    height: 100%;
     width: 50%;
     overflow: hidden;
 }
 
 .loginbanner img {
-    height: 720px;
+    height: 90vh;
+    width: 100%;
     object-fit: cover;
 }
 
