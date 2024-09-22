@@ -96,52 +96,54 @@ const produtos = [
   {
     id: 1,
     nome: "Notebook",
-    descricao:
-      "Notebook Dell Inspiron 15, com processador Intel i7, 16GB de RAM, 512GB SSD, tela Full HD de 15.6 polegadas.",
+    descricao: "Notebook Dell Inspiron 15, com processador Intel i7, 16GB de RAM, 512GB SSD, tela Full HD de 15.6 polegadas.",
     preco: 2999.99,
     imagem: "https://www.dell.com/pt-br/shop/notebooks-dell/notebook-inspiron-15/spd/inspiron-15-3520-laptop/i3520wadl1012w"
   },
   {
     id: 2,
     nome: "Mouse",
-    descricao:
-      "Mouse sem fio Logitech MX Master 3, ergonômico, com sensor de alta precisão e bateria recarregável.",
+    descricao: "Mouse sem fio Logitech MX Master 3, ergonômico, com sensor de alta precisão e bateria recarregável.",
     preco: 99.99,
     imagem: "https://http2.mlstatic.com/D_NQ_NP_768669-MLU75720929309_042024-O.webp"
   },
   {
     id: 3,
     nome: "Teclado",
-    descricao:
-      "Teclado mecânico sem fio Keychron K2, com switches Red, retroiluminação RGB, compatível com Windows e macOS.",
+    descricao: "Teclado mecânico sem fio Keychron K2, com switches Red, retroiluminação RGB, compatível com Windows e macOS.",
     preco: 199.99,
     imagem: "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages.kabum.com.br%2Fprodutos%2Ffotos%2F105009%2Fteclado-mecanico-gamer-hyperx-alloy-origins-core-rgb-hx-kb7rdx-br_1574693479_g.jpg&w=640&q=100"
   },
   {
     id: 4,
     nome: "Monitor",
-    descricao:
-      "Monitor LG UltraWide 34'', resolução 2560x1080, tecnologia IPS, ideal para multitarefa e edição de vídeo.",
+    descricao: "Monitor LG UltraWide 34'', resolução 2560x1080, tecnologia IPS, ideal para multitarefa e edição de vídeo.",
     preco: 1499.99,
     imagem: "https://http2.mlstatic.com/D_NQ_NP_929217-MLA50289011373_062022-O.webp"
   },
 ];
-//rota para cadastrar produto
 
-app.post("/cadastrar-produto", (req, res) => {
-  const { nome, descricao, preco } = req.body;
+let currentId = produtos.length + 1;
+
+app.post('/cadastrar-produto', (req, res) => {
+  const { nome, descricao, preco, imagem } = req.body;
+
+  if (!nome || !descricao || !preco) {
+    // Verifica se todos os campos obrigatórios estão preenchidos
+    return res.status(400).json({ success: false, message: 'Todos os campos são obrigatórios.' });
+  }
 
   const novoProduto = {
-    id: produtos.length + 1, // Gera um novo ID
+    id: currentId++,
     nome,
     descricao,
     preco: parseFloat(preco),
+    imagem: imagem || ''
   };
 
   produtos.push(novoProduto);
 
-  console.log("Novo produto adicionado:", novoProduto);
-  res.status(201).json({ message: "Produto adicionado com sucesso!" });
+  res.status(200).json({ success: true, message: 'Produto cadastrado com sucesso!', produto: novoProduto });
 });
 
 app.get("/produtos", authMiddleware, (req, res) => {

@@ -2,12 +2,19 @@ extends layout2
 
 block content
   .content
-    h1 Produtos Disponíveis
-    if produtos.length
-      each produto in produtos
-        .produto
-          h3= produto.nome
-          p Descrição: #{produto.descricao}
-          p Preço: R$ #{produto.preco}
-    else
-      p Nenhum produto disponível no momento. 
+    div.cabecalho
+      h1 Produtos em destaque
+      p Aqui você pode encontrar artefatos de tecnologicos e de ultima geração
+
+  if produtos.length
+    each produto in produtos
+      div.produtos
+        button.buttoncontent 
+          
+          h3  #{produto.nome}
+          img(src=produto.imagem, alt=produto.nome)
+          p R$ #{produto.preco}
+          p #{produto.descricao}
+  else
+    p Nemnhum produto disponível no momento
+  button.vermais  ver mais
