@@ -10,11 +10,49 @@ block content
     each produto in produtos
       div.produtos
         button.buttoncontent 
-          
           h3  #{produto.nome}
           img(src=produto.imagem, alt=produto.nome)
           p R$ #{produto.preco}
           p #{produto.descricao}
+          form(method='POST', action='/delete-product', onsubmit='return handleDelete(event)')
+            input(type='hidden', name='id', value=produto.id)
+            button(type='submit') Excluir
   else
-    p Nemnhum produto disponível no momento
-  button.vermais  ver mais
+    p Nenhum produto disponível no momento
+  button.vermais  Ver mais
+
+block scripts
+  script.
+    function confirmDelete() {
+      return confirm("Deseja excluir este item?");
+    }
+
+    function handleDelete(event) {
+      event.preventDefault();
+
+      if (confirmDelete()) {
+        const form = event.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+          if (result.success) {
+            alert(result.message);
+            form.closest('.produtos').remove();
+          } else {
+            alert('Erro ao excluir o produto.');
+          }
+        })
+        .catch(error => {
+          alert('Erro ao excluir o produto.');
+        });
+      }
+    }

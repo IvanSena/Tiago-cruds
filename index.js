@@ -88,11 +88,13 @@ app.post("/authenticated", (req, res) => {
   }
 });
 
+
+
 app.get("/home", authMiddleware, (req, res) => {
   res.render("home", { produtos, user: session.user, authToken: session.authToken });
 });
 
-const produtos = [
+let produtos = [
   {
     id: 1,
     nome: "Notebook",
@@ -123,13 +125,35 @@ const produtos = [
   },
 ];
 
+app.post("/delete-product", (req, res) => {
+  const { id } = req.body;
+
+  produtos = produtos.filter(produto => produto.id !== parseInt(id));
+
+  res.status(200).json({ success: true, message: "Produto excluído com sucesso!" });
+});
+
+
+
+app.post("/editar-produto", (req, res) => {
+  const { id, nome, descricao, preco, imagem } = req.body;
+
+  const index = produtos.findIndex(produto => produto.id === parseInt(id));
+  
+  if (index !== -1) {
+    produtos[index] = { id: parseInt(id), nome, descricao, preco: parseFloat(preco), imagem };
+    res.status(200).json({ success: true, message: "Produto atualizado com sucesso!" });
+  } else {
+    res.status(404).json({ success: false, message: "Produto não encontrado." });
+  }
+});
+
 let currentId = produtos.length + 1;
 
 app.post('/cadastrar-produto', (req, res) => {
   const { nome, descricao, preco, imagem } = req.body;
 
   if (!nome || !descricao || !preco) {
-    // Verifica se todos os campos obrigatórios estão preenchidos
     return res.status(400).json({ success: false, message: 'Todos os campos são obrigatórios.' });
   }
 

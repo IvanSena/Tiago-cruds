@@ -1,0 +1,56 @@
+extends layout2
+
+block content
+  .content
+  div.prodPage
+    form.pure-form.pure-form-stacked(action="/editar-produto", method="POST", id="produtoCadForm")
+      h1 Salvar Alterações
+      div.fieldsetProd
+        input(type="hidden", name="id", value=produto.id)
+        p Nome do Produto:
+        div.prodInput
+          label(for="nome") 
+          input(type="text", id="nome", name="nome", value=produto.nome, required)
+        p Descrição:
+        div.prodInput
+          label(for="descricao") 
+          input(type="text", id="descricao", name="descricao", value=produto.descricao, required)
+        p Preço:
+        div.prodInput
+          label(for="preco") 
+          input(type="number", step="0.01", id="preco", name="preco", value=produto.preco, required)
+        p Imagem (URL):
+        div.prodInput
+          label(for="imagem") 
+          input(type="url", id="imagem", name="imagem", value=produto.imagem)
+        
+        button.pure-button.pure-button-primary(type="submit") Salvar Alterações
+
+  script.
+    document.getElementById('produtoCadForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const form = event.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json().then(result => ({ status: response.status, body: result })))
+      .then(({ status, body }) => {
+        if (status === 200 && body.success) {
+          alert(body.message);
+          form.reset(); // Reseta o formulário
+        } else {
+          alert(body.message || 'Erro desconhecido.');
+        }
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+    });

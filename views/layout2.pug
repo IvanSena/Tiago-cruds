@@ -7,9 +7,9 @@ html(lang="pt-br")
     link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous")
     //link(rel="stylesheet", href="/pure-min.css")
     link(rel="stylesheet", href="Cssheet/style.css")
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet"> 
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet") 
     
   body
     header
@@ -20,17 +20,21 @@ html(lang="pt-br")
             a.pure-menu-link(href=`/produtos?authToken=${authToken}`) Produtos
           li.pure-menu-item
             a.pure-menu-link(href=`/cadastro?authToken=${authToken}`) Cadastro
-        spam.buscar
+        span.buscar
           input.lupinha(type="text")
           button.lupabotao.pure-menu-item  
             img(src="https://cdn-icons-png.flaticon.com/512/2866/2866321.png", alt="")
-        spam.logo.pure-menu-item 
+        span.logo.pure-menu-item 
           img(src="Images/logo.svg", alt="logo")
     main
       block content
     footer
       .footer-content
         p &copy; 2024 IvanTech Store . Todos os direitos reservados.
-  script(src="index.js")
-  script(src="js/slide.js")
-  
+
+    // Default scripts
+    script(src="index.js")
+    script(src="js/slide.js")
+
+    // Placeholder for page-specific scripts
+    block scripts
